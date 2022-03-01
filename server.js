@@ -17,6 +17,7 @@ const bodyParser = require("body-parser");
 const router = express.Router();
 
 const enableCORS = function (req, res, next) {
+  console.log('cors start')
   if (!process.env.DISABLE_XORIGIN) {
     const allowedOrigins = ["https://www.freecodecamp.org"];
     const origin = req.headers.origin;
@@ -30,6 +31,7 @@ const enableCORS = function (req, res, next) {
       });
     }
   }
+  console.log('cors end')
   next();
 };
 
@@ -45,6 +47,7 @@ app.get("/", function (req, res) {
 });
 
 router.get("/file/*?", function (req, res, next) {
+  console.log('router file')
   if (req.params[0] === ".env") {
     return next({ status: 401, message: "ACCESS DENIED" });
   }
