@@ -8,7 +8,7 @@ let Person;
 
   const { Schema } = mongoose;
 
-  const personSchema = new Schema({
+  Person = new Schema({
     name: { type: String, required: true }, 
     age: Number,
     favoriteFoods: [String]
