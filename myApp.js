@@ -23,14 +23,17 @@ const createAndSavePerson = (done) => {
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-   Person.create(arrayOfPeople, function (err, data) {
+  Person.create(arrayOfPeople, function (err, data) {
     if (err) return done(err); // error
     done(null , data); // saved with succes
   });
 };
 
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  Person.find({ name: personName }, function (err, docs) {
+    if (err) return done(err); // error
+    done(null , docs); // found with succes
+  });
 };
 
 const findOneByFood = (food, done) => {
