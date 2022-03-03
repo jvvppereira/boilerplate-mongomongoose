@@ -17,7 +17,7 @@ let Person = mongoose.model('Person', personSchema);
 const defaultProcess = function (done, err, data) {
   if (err) return done(err); // error
   done(null , data); // success
-});
+};
 
 const createAndSavePerson = (done) => {
   const document = new Person({ name: 'Joao', age: 24, favoriteFoods: ['pizza', 'chocolate'] });
