@@ -48,7 +48,7 @@ const findEditThenSave = (personId, done) => {
     
     if (err) return done(err); // error
     
-    done(null , data); // success
+    Person.update({ _id: personId }, data, function (err, data) { defaultProcess(done, err, data) });
   });
 };
 
