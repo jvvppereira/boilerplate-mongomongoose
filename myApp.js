@@ -42,13 +42,12 @@ const findPersonById = (personId, done) => {
 
 const findEditThenSave = (personId, done) => {
   Person.findById(personId , function (err, data) { 
-    const foodToAdd = "hamburger";
-    
-    data.favoriteFoods.push(foodToAdd);
-    
     if (err) return done(err); // error
     
-    Person.updateOne({ _id: personId }, data, {}, function (err, data) { defaultProcess(done, err, data) });
+    const foodToAdd = "hamburger";
+    data.favoriteFoods.push(foodToAdd);
+        
+    data.save(function (err, data) { defaultProcess(done, err, data) });
   });
 };
 
