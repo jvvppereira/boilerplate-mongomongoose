@@ -14,40 +14,30 @@ const personSchema = new Schema({
 
 let Person = mongoose.model('Person', personSchema);
 
+const defaultProcess = function (done, err, data) {
+  if (err) return done(err); // error
+  done(null , data); // success
+});
+
 const createAndSavePerson = (done) => {
   const document = new Person({ name: 'Joao', age: 24, favoriteFoods: ['pizza', 'chocolate'] });
-  document.save(function (err, data) {
-    if (err) return done(err); // error
-    done(null , data); // saved with succes
-  });
+  document.save(function (err, data) { defaultProcess(done, err, data) });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  Person.create(arrayOfPeople, function (err, data) {
-    if (err) return done(err); // error
-    done(null , data); // saved with succes
-  });
+  Person.create(arrayOfPeople, function (err, data) { defaultProcess(done, err, data) });
 };
 
 const findPeopleByName = (personName, done) => {
-  Person.find({ name: personName }, function (err, docs) {
-    if (err) return done(err); // error
-    done(null , docs); // found with succes
-  });
+  Person.find({ name: personName }, function (err, data) { defaultProcess(done, err, data) });
 };
 
 const findOneByFood = (food, done) => {
-  Person.findOne({ favoriteFoods: food }, function (err, data) {
-    if (err) return done(err); // error
-    done(null , data); // found with succes
-  });
+  Person.findOne({ favoriteFoods: food }, function (err, data) { defaultProcess(done, err, data) });
 };
 
 const findPersonById = (personId, done) => {
-  Person.findById(personId , function (err, data) {
-    if (err) return done(err); // error
-    done(null , data); // found with succes
-  });
+  Person.findById(personId , function (err, data) { defaultProcess(done, err, data) });
 };
 
 const findEditThenSave = (personId, done) => {
