@@ -6,6 +6,14 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let Person;
 
+  const { Schema } = mongoose;
+
+  const personSchema = new Schema({
+    name: { type: String, required: true }, 
+    age: Number,
+    favoriteFoods: [String]
+  });
+
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
 };
